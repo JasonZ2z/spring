@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    <context:component-scan base-package="com.xinzhe"/>-->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <bean id="person1" name="p, p1" class="com.xinzhe.pojo.Person">
+        <property name="id" value="1"/>
+        <property name="name" value="zxzxzx"/>
+    </bean>
+
+    <bean id="conn" class="com.xinzhe.bean.ConnectionFactoryBean">
+        <property name="driveClassName" value="${mysql.driverClassName}"/>
+        <property name="url" value="${mysql.url}"/>
+        <property name="username" value="${mysql.username}"/>
+        <property name="password" value="${mysql.password}"/>
+    </bean>
+</beans>
