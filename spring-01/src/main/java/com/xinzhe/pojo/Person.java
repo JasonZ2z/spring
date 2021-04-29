@@ -1,9 +1,23 @@
 package com.xinzhe.pojo;
 
-public class Person {
+import org.springframework.beans.factory.InitializingBean;
+
+import java.util.Date;
+
+public class Person implements InitializingBean {
 
     private Integer id;
     private String name;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    private Date birthday;
 
     public Person() {
         System.out.println("********** Construct Method " + this.getClass().getSimpleName());
@@ -27,6 +41,15 @@ public class Person {
     }
 
     @Override public String toString() {
-        return "Person{" + "id=" + id + ", name='" + name + '\'' + '}';
+        return "Person{" + "id=" + id + ", name='" + name + '\'' + ", birthday=" + birthday + '}';
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("Person init method");
+    }
+
+    public void myInitMethod() {
+        System.out.println("my person init method");
     }
 }

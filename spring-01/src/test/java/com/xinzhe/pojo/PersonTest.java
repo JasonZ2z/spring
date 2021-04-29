@@ -53,7 +53,7 @@ public class PersonTest {
     @Test
     public void test04(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-        System.out.println(applicationContext.getBean("person2", Person.class));
+        System.out.println(applicationContext.getBean("person", Person.class));
     }
 
     @Test
@@ -74,5 +74,11 @@ public class PersonTest {
     public void test06(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         System.out.println(applicationContext.getBean("&conn"));
+    }
+
+    @Test
+    public void test07(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        System.out.println(applicationContext.getBean("conn2"));
     }
 }

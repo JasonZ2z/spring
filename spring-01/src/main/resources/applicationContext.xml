@@ -5,11 +5,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 <!--    <context:component-scan base-package="com.xinzhe"/>-->
-    <context:property-placeholder location="classpath:db.properties"/>
+    <context:property-placeholder location="classpath:db.properties, classpath:config.properties"/>
 
-    <bean id="person1" name="p, p1" class="com.xinzhe.pojo.Person">
+    <bean id="person" name="p, p1" class="com.xinzhe.pojo.Person" init-method="myInitMethod">
         <property name="id" value="1"/>
         <property name="name" value="zxzxzx"/>
+        <property name="birthday" value="1992-02-04"/>
     </bean>
 
     <bean id="conn" class="com.xinzhe.bean.ConnectionFactoryBean">
@@ -17,5 +18,21 @@
         <property name="url" value="${mysql.url}"/>
         <property name="username" value="${mysql.username}"/>
         <property name="password" value="${mysql.password}"/>
+    </bean>
+
+    <bean id = "connFactory" class="com.xinzhe.bean.ConnectionFactory"/>
+    <bean id="conn2" factory-bean="connFactory" factory-method="getConn"/>
+
+    <bean id="conn3" class="com.xinzhe.bean.StaticConnectionFactory" factory-method="getConn"/>
+
+    <bean id="dateConvert" class="com.xinzhe.convert.DateConvert">
+        <property name="pattern" value="${convert.pattern}"/>
+    </bean>
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters" >
+            <set>
+                <ref bean="dateConvert"/>
+            </set>
+        </property>
     </bean>
 </beans>
