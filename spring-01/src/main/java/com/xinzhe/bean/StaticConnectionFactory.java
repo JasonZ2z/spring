@@ -10,7 +10,7 @@ public class StaticConnectionFactory {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useSSL=false", "root", "123456");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?allowPublicKeyRetrieval=true&useSSL=false", "root", "123456");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

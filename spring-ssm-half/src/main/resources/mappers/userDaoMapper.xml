@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xinzhe.dao.UserDAO">
+        <!-- sql:里面可以写入一个共同的sql代码，用于提取重复的代码。
+            要使用该代码的时候就直接使用<include>标签
+            id:为提取的sql代码，取一个id，起标识作用
+             -->
+        <insert id="save" parameterType="user">
+            insert into test(username, password) values (#{username}, #{password})
+        </insert>
+</mapper>

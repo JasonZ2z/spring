@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    <context:component-scan base-package="com.xinzhe"/>-->
+    <bean id="userService" class="com.xinzhe.service.impl.UserServiceImpl"/>
+    <bean id="userServiceAnnotation" class="com.xinzhe.service.impl.UserServiceAnnotation"/>
+
+    <bean id="before" class="com.xinzhe.aspect.Before"/>
+
+    <bean id="around" class="com.xinzhe.aspect.Around"/>
+<!--    <aop:config>-->
+<!--        <aop:pointcut id="pc" expression="execution(* *(..))"/>-->
+<!--        <aop:advisor advice-ref="around" pointcut-ref="pc"/>-->
+<!--    </aop:config>-->
+
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="pc" expression="@annotation(com.xinzhe.annotation.Log)"/>
+        <aop:advisor advice-ref="around" pointcut-ref="pc"/>
+    </aop:config>
+
+
+    <bean id="proxyBeanProcessor" class="com.xinzhe.proxy.ProxyBeanPostProcessor"/>
+
+
+</beans>
